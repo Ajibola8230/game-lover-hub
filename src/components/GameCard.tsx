@@ -29,7 +29,7 @@ const GameCard = ({ game, variant = "default", index = 0, isFavorite, onToggleFa
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: index * 0.1 }}
-        className="relative min-w-[280px] snap-center overflow-hidden rounded-xl"
+        className="relative min-w-[280px] snap-center overflow-hidden rounded-xl md:min-w-0"
       >
         <FavButton isFavorite={isFavorite} onToggle={onToggleFavorite} />
         <img src={game.image} alt={game.title} className="h-[360px] w-full object-cover" />

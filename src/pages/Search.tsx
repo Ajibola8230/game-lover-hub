@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Search as SearchIcon } from "lucide-react";
 import { useState } from "react";
-import AppHeader from "@/components/AppHeader";
-import BottomNav from "@/components/BottomNav";
+import PageLayout from "@/components/PageLayout";
 import GameCard from "@/components/GameCard";
 import { trendingGames } from "@/data/games";
 
@@ -14,14 +13,12 @@ const Search = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      <AppHeader />
-
-      <div className="px-4 pt-4">
+    <PageLayout>
+      <div className="px-4 pt-4 md:px-0">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative"
+          className="relative md:max-w-xl"
         >
           <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
@@ -33,7 +30,7 @@ const Search = () => {
           />
         </motion.div>
 
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
           {filtered.map((game, i) => (
             <GameCard key={`${game.id}-search-${i}`} game={game} index={i} />
           ))}
@@ -47,9 +44,7 @@ const Search = () => {
           </div>
         )}
       </div>
-
-      <BottomNav />
-    </div>
+    </PageLayout>
   );
 };
 
