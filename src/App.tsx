@@ -10,6 +10,7 @@ import Categories from "./pages/Categories";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
+import GameDetail from "./pages/GameDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/game/:id" element={<GameDetail />} />
             <Route path="/search" element={<Search />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />

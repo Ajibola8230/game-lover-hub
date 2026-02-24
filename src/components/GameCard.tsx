@@ -1,5 +1,6 @@
 import { Star, Heart } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import type { Game } from "@/types/game";
 
 interface GameCardProps {
@@ -23,13 +24,17 @@ const FavButton = ({ isFavorite, onToggle }: { isFavorite?: boolean; onToggle?: 
 };
 
 const GameCard = ({ game, variant = "default", index = 0, isFavorite, onToggleFavorite }: GameCardProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate(`/game/${game.id}`);
+
   if (variant === "featured") {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: index * 0.1 }}
-        className="relative min-w-[280px] snap-center overflow-hidden rounded-xl md:min-w-0"
+        className="relative min-w-[280px] snap-center overflow-hidden rounded-xl md:min-w-0 cursor-pointer"
+        onClick={handleClick}
       >
         <FavButton isFavorite={isFavorite} onToggle={onToggleFavorite} />
         <img src={game.image} alt={game.title} className="h-[360px] w-full object-cover" />
@@ -58,7 +63,8 @@ const GameCard = ({ game, variant = "default", index = 0, isFavorite, onToggleFa
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.05 }}
-        className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-secondary"
+        className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-secondary cursor-pointer"
+        onClick={handleClick}
       >
         <img src={game.image} alt={game.title} className="h-16 w-16 rounded-lg object-cover" />
         <div className="flex-1 min-w-0">
@@ -79,7 +85,8 @@ const GameCard = ({ game, variant = "default", index = 0, isFavorite, onToggleFa
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
-      className="glass-card group relative overflow-hidden rounded-xl transition-all hover:border-glow"
+      className="glass-card group relative overflow-hidden rounded-xl transition-all hover:border-glow cursor-pointer"
+      onClick={handleClick}
     >
       <div className="relative overflow-hidden">
         <FavButton isFavorite={isFavorite} onToggle={onToggleFavorite} />
